@@ -1,15 +1,16 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 29, 2021 at 05:22 PM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.8
+-- Host: localhost:3306
+-- Generation Time: Aug 04, 2021 at 04:59 PM
+-- Server version: 10.2.39-MariaDB-log-cll-lve
+-- PHP Version: 7.3.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET time_zone = "+07:00";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -18,122 +19,125 @@ SET time_zone = "+07:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `asaurus_form`
+-- Database: `asauruse_edu`
 --
-CREATE DATABASE IF NOT EXISTS `asauruse_form` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `asauruse_form`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `list_kelas`
+-- Table structure for table `kelas`
 --
 
-CREATE TABLE `list_kelas` (
-  `id_kelas` varchar(10) NOT NULL COMMENT 'ID Kelas',
-  `nama_kelas` varchar(10) NOT NULL COMMENT 'Nama Kelas'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Listing Kelas yang di dukung oleh platform AI AsaurusEdu';
+CREATE TABLE `kelas` (
+  `id_kelas` int(10) NOT NULL,
+  `nama_kelas` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `list_kelas`
+-- Dumping data for table `kelas`
 --
 
-INSERT INTO `list_kelas` (`id_kelas`, `nama_kelas`) VALUES
-('kelas-07', 'Kelas 7'),
-('kelas-08', 'Kelas 8'),
-('kelas-09', 'Kelas 9'),
-('kelas-10', 'Kelas 10'),
-('kelas-11', 'Kelas 11'),
-('kelas-12', 'Kelas 12');
+INSERT INTO `kelas` (`id_kelas`, `nama_kelas`) VALUES
+(1, 'Kelas 7'),
+(2, 'Kelas 8'),
+(3, 'Kelas 9');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `list_matapelajaran`
+-- Table structure for table `materi`
 --
 
-CREATE TABLE `list_matapelajaran` (
-  `id_matpel` varchar(10) NOT NULL,
+CREATE TABLE `materi` (
+  `id_materi` int(10) NOT NULL,
+  `nama_materi` varchar(100) NOT NULL,
+  `id_kelas` int(10) NOT NULL,
+  `id_matpel` int(10) NOT NULL,
+  `jenis_media` text NOT NULL,
+  `link_media` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `matpel`
+--
+
+CREATE TABLE `matpel` (
+  `id_matpel` int(10) NOT NULL,
   `nama_matpel` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Listing Mata Pelajaran yang didukung oleh AI AsaurusEdu';
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `list_matapelajaran`
+-- Dumping data for table `matpel`
 --
 
-INSERT INTO `list_matapelajaran` (`id_matpel`, `nama_matpel`) VALUES
-('bindo', 'Bahasa Indonesia'),
-('bing', 'Bahasa Inggris'),
-('ipa', 'Ilmu Pengetahuan Ala'),
-('ips', 'Ilmu Pengetahuan Sos'),
-('mat', 'Matematika'),
-('pai', 'Pendidikan Agama Isl'),
-('pjok', 'Pendidikan Jasmani'),
-('pkn', 'Pendidikan Kewarga N');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `list_materi`
---
-
-CREATE TABLE `list_materi` (
-  `id_materi` varchar(16) NOT NULL,
-  `nama_materi` text NOT NULL,
-  `id_kelas` varchar(10) NOT NULL,
-  `id_matpel` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Listing Materi yang tersedia pada AsaurusEdu';
-
---
--- Dumping data for table `list_materi`
---
-
-INSERT INTO `list_materi` (`id_materi`, `nama_materi`, `id_kelas`, `id_matpel`) VALUES
-('07-bindo-05', 'Benda-Benda di dalam KBBI', 'kelas-07', 'bindo'),
-('07-bing-06', 'Benda-Benda di dalam Kamus', 'kelas-07', 'bing'),
-('07-ipa-01', 'Bentuk Bentuk Material di Bumi', 'kelas-07', 'ipa'),
-('07-ips-02', 'Benda-Benda di dalam Kerajaan', 'kelas-07', 'ips'),
-('07-mtk-03', 'Benda-Benda di dalam Matematika', 'kelas-07', 'mtk'),
-('07-pai-04', 'Benda-Benda di dalam Kabah', 'kelas-07', 'pai'),
-('07-pjok-07', 'Benda-Benda di dalam Gelora Bung Karno', 'kelas-07', 'pjok'),
-('08-bindo-05', 'Benda-Benda di dalam KBBI untuk kelas 8', 'kelas-08', 'bindo'),
-('08-bing-06', 'Benda-Benda di dalam Kamus untuk kelas 8', 'kelas-08', 'bing'),
-('08-ipa-01', 'Bentuk Bentuk Material di Bumi untuk kelas 8', 'kelas-08', 'ipa'),
-('08-ips-02', 'Benda-Benda di dalam Kerajaan untuk kelas 8', 'kelas-08', 'ips'),
-('08-mtk-03', 'Benda-Benda di dalam Matematika untuk kelas 8', 'kelas-08', 'mtk'),
-('08-pai-04', 'Benda-Benda di dalam Kabah untuk kelas 8', 'kelas-08', 'pai'),
-('08-pjok-07', 'Benda-Benda di dalam Gelora Bung Karno untuk kelas 8', 'kelas-08', 'pjok'),
-('09-bindo-05', 'Benda-Benda di dalam KBBI untuk kelas 9', 'kelas-09', 'bindo'),
-('09-bing-06', 'Benda-Benda di dalam Kamus untuk kelas 9', 'kelas-09', 'bing'),
-('09-ipa-01', 'Bentuk Bentuk Material di Bumi untuk kelas 9', 'kelas-09', 'ipa'),
-('09-ips-02', 'Benda-Benda di dalam Kerajaan untuk kelas 9', 'kelas-09', 'ips'),
-('09-mtk-03', 'Benda-Benda di dalam Matematika untuk kelas 9', 'kelas-09', 'mtk'),
-('09-pai-04', 'Benda-Benda di dalam Kabah untuk kelas 9', 'kelas-09', 'pai'),
-('09-pjok-07', 'Benda-Benda di dalam Gelora Bung Karno untuk kelas 9', 'kelas-09', 'pjok');
+INSERT INTO `matpel` (`id_matpel`, `nama_matpel`) VALUES
+(1, 'IPA'),
+(2, 'MAT'),
+(3, 'IPS'),
+(4, 'B. INDONESIA'),
+(5, 'B. INGGRIS'),
+(6, 'PKN'),
+(7, 'AGAMA'),
+(8, 'OLAHRAGA');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `list_kelas`
+-- Indexes for table `kelas`
 --
-ALTER TABLE `list_kelas`
+ALTER TABLE `kelas`
   ADD PRIMARY KEY (`id_kelas`);
 
 --
--- Indexes for table `list_matapelajaran`
+-- Indexes for table `materi`
 --
-ALTER TABLE `list_matapelajaran`
-  ADD PRIMARY KEY (`id_matpel`);
-
---
--- Indexes for table `list_materi`
---
-ALTER TABLE `list_materi`
+ALTER TABLE `materi`
   ADD PRIMARY KEY (`id_materi`),
   ADD KEY `id_kelas` (`id_kelas`),
   ADD KEY `id_matpel` (`id_matpel`);
+
+--
+-- Indexes for table `matpel`
+--
+ALTER TABLE `matpel`
+  ADD PRIMARY KEY (`id_matpel`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `kelas`
+--
+ALTER TABLE `kelas`
+  MODIFY `id_kelas` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `materi`
+--
+ALTER TABLE `materi`
+  MODIFY `id_materi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `matpel`
+--
+ALTER TABLE `matpel`
+  MODIFY `id_matpel` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `materi`
+--
+ALTER TABLE `materi`
+  ADD CONSTRAINT `id_kelas` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`),
+  ADD CONSTRAINT `id_matpel` FOREIGN KEY (`id_matpel`) REFERENCES `matpel` (`id_matpel`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

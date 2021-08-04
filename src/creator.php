@@ -38,27 +38,13 @@
         </select>
       </div>
 
-      <div class="form-group" style="margin: 10px 10px 10px 10px">
-        <label>Materi</label>
-        <select class="form-control" name="materi" id="materi">
-          <option value="">Pilih Materi</option>
-        </select>
-      </div>
+      <input class="form-control" id="namamateri" style="margin: 10px 10px 10px 10px" placeholder="Input Nama Materi" />
+
+      <input class="form-control" id="linkmateri" style="margin: 10px 10px 10px 10px" placeholder="Input Link Materi" />
     </div>
 
-    <button class="btn-warning" type="button">NEXT</button>
+    <button class="btn-warning" type="button">KIRIM MATERI</button>
   </div>
-
-  <script src="libs/utils.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      getFormData()
-      const pilihKelasMatpel = document.querySelectorAll('#kelas, #matpel')
-      pilihKelasMatpel.forEach(element => element.addEventListener('change', function() {
-        getMateri()
-      }))
-    });
-  </script>
 </body>
 
 </html>
