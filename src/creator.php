@@ -40,7 +40,7 @@
 
       <input class="form-control" id="namamateri" style="margin: 10px 10px 10px 10px" placeholder="Input Nama Materi" />
 
-      <input class="form-control" id="linkmateri" style="margin: 10px 10px 10px 10px" placeholder="Input Link Materi" />
+      <input class="form-control" id="linkmateri" style="margin: 10px 10px 10px 10px" placeholder="Input Link Materi " />
     </div>
 
     <button class="btn-warning" type="button">KIRIM MATERI</button>

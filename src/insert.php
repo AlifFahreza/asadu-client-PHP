@@ -45,7 +45,6 @@
         </select>
       </div>
     </div>
-
     <button class="btn-warning" type="button">NEXT</button>
   </div>
 
